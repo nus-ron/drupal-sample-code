@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Contains fountains_gifts_api.module.
+ */
+
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function fountains_gifts_api_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.fountains_gifts_api':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Common nhancements for JSON API.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function fountains_gifts_api_entity_base_field_info(EntityTypeInterface $entity_type) {
+  $fields = [];
+  if ($entity_type->id() == 'menu_link_content') {
+    $fields['url'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('URL'))
+      ->setDescription(t('The URL of the menu link.'))
+      ->setComputed(TRUE)
+      ->setQueryable(FALSE);
+  }
+  return $fields;
+}

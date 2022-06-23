@@ -1,0 +1,7 @@
+name: Fountains Gifts API
+type: module
+description: API to provide gift information
+core: 8.x
+package: Fountains
+dependencies:
+  - jsonapi

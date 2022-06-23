@@ -1,0 +1,84 @@
+{#
+/**
+ * @file
+ * Template to display a page.
+ * @see template_preprocess_page()
+ * @see html.html.twig
+ *
+ * @ingroup themeable
+ */
+#}
+<div id="page" class="container">
+
+  <header role="banner" id="header" class="clearfix">
+    {{ page.header }}
+  </header>
+
+  {% if slider %}
+    <div>
+      <ul class="slides">
+        {% for slide in slider %}
+          <li>
+            <a href="{{ slide.url }}"><img src="{{ slide.src }}"></a>
+            <p class="caption">{{ slide.title }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  {% if page.homequotes %}
+    <div id="home-quote">{{ page.homequotes }}</div>
+  {% endif %}
+
+  {% if page.highlight or page.second_highlight %}
+    <div id="home-highlights" class="row">
+      {% if page.highlight %}
+        <div class="home-high-1 col-md-4">{{ page.highlight }}</div>
+      {% endif %}
+      {% if page.second_highlight %}
+        <div class="home-high-2 col-md-4">{{ page.second_highlight }}</div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <main class="clearfix">
+    {% if page.sidebar %}
+      <div id="sidebar" class="sidebar {{ sidebar }}">
+        {{ page.sidebar }}
+      </div>
+    {% endif %}
+
+    <div class="{{ layout }}" role="main">
+      {% if page.top_content %}
+        <div id="top_content">{{ page.top_content }}</div>
+      {% endif %}
+
+      {{ page.content }}
+
+    </div>
+
+  </main>
+
+  {% if page.footer or page.second_footer %}
+    <div id="footer-saran" class="row">
+      <div id="footer-wrapper">
+        {% if page.footer %}
+          <div class="footer col-md-3">{{ page.footer }}</div>
+        {% endif %}
+        {% if page.second_footer %}
+          <div class="second-footer col-md-3">{{ page.second_footer }}</div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="clear"></div>
+  {% endif %}
+
+  <div class="clear"></div>
+  <div id="copyright">
+  {% if copyright.footer_copyright %}
+    {{ copyright.footer_copyright }}
+  {% endif %}
+  </div>
+
+</div>

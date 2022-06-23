@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Template for comments.
+ *
+ * @see template_preprocess_comment()
+ *
+ * @ingroup themeable
+ */
+#}
+<article{{ attributes }}>
+  {{ title_prefix }}
+
+  <h3{{ title_attributes }}>{{ title }}</h3> <!-- /.header -->
+
+  {{ title_suffix }}
+
+  <footer>
+    {{ user_picture }}
+    <p class="submitted">{{ submitted }}</p>
+    <span class="hidden new" data-comment-timestamp="{{ new_indicator_time }}"></span>
+
+    {% if parent %}
+      <p class="article parent visually-hidden">{{ parent }}</p>
+    {% endif %}
+
+  </footer>
+
+  <div{{ content_attributes }}>
+    {{ content|without('links') }}
+
+    {% if signature %}
+      <div class="user-signature">
+        {{ signature }}
+      </div>
+    {% endif %}
+  </div>
+  {{ content.links }}
+</article>
